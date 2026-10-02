@@ -12,7 +12,7 @@ image link
   </a>
 
   <!-- Gallery -->
-  <a href=https://modrinth.com/mod/mod-id/gallery>
+  <a href=https://modrinth.com/mod/nephra/gallery>
     <img alt="modrinth-gallery" height="64" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/documentation/modrinth-gallery_vector.svg">
   </a>
 
@@ -28,5 +28,5 @@ image link
 </p>
 
 <p align=center>
-    <b>Example Mod</b> is a ...
+    <b>Nephra</b> is a ...
 </p>

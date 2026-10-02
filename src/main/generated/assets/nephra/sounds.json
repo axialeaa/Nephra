@@ -1,0 +1,12 @@
+{
+  "block.nephra.absorb": {
+    "sounds": [
+      {
+        "type": "event",
+        "name": "minecraft:block.sponge.absorb",
+        "pitch": 0.6
+      }
+    ],
+    "subtitle": "subtitles.nephra.block.nephra.absorb"
+  }
+}

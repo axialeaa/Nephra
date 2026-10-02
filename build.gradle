@@ -6,7 +6,7 @@ plugins {
 }
 
 String mcVersion = project.build_version
-String updateName = "$mod_name $mod_version ($mcVersion)$update_name_suffix"
+String updateName = "$mod_name $mod_version for Minecraft $mcVersion"
 
 JavaVersion javaVersion = JavaVersion.VERSION_25
 int javaVersionNumber = 25
@@ -124,6 +124,12 @@ loom {
         }
     }
     accessWidenerPath = file("src/main/resources/${project.mod_id}.classtweaker")
+}
+
+fabricApi {
+    configureDataGeneration() {
+        client = true
+    }
 }
 
 java {

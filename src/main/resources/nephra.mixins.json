@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.axialeaa.nephra.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "MagmaBlockMixin",
+    "RuinedPortalPieceMixin",
+    "impl.BlockBehaviourImplMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

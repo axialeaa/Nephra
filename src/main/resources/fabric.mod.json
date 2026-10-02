@@ -30,13 +30,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.axialeaa.modid.ExampleMod"
+          "com.axialeaa.nephra.Nephra"
 		],
 		"client": [
-			"com.axialeaa.modid.ExampleModClient"
+          "com.axialeaa.nephra.NephraClient"
 		],
 		"fabric-datagen": [
-			"com.axialeaa.modid.data.ExampleModDataGenerator"
+          "com.axialeaa.nephra.data.NephraDataGenerator"
 		]
 	},
 	"accessWidener" : "${id}.classtweaker",

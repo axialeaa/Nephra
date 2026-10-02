@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nephra:block/nephra_slab"
+    },
+    "type=double": {
+      "model": "nephra:block/nephra"
+    },
+    "type=top": {
+      "model": "nephra:block/nephra_slab_top"
+    }
+  }
+}
