@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nephra:block/polished_nephra_slab"
+    },
+    "type=double": {
+      "model": "nephra:block/polished_nephra"
+    },
+    "type=top": {
+      "model": "nephra:block/polished_nephra_slab_top"
+    }
+  }
+}

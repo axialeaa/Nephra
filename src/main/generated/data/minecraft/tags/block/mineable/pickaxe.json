@@ -1,8 +1,21 @@
 {
   "values": [
     "nephra:nephra",
-    "nephra:nephra_slab",
     "nephra:nephra_stairs",
-    "nephra:nephra_wall"
+    "nephra:nephra_slab",
+    "nephra:nephra_wall",
+    "nephra:polished_nephra",
+    "nephra:polished_nephra_stairs",
+    "nephra:polished_nephra_slab",
+    "nephra:polished_nephra_pillar",
+    "nephra:nephra_bricks",
+    "nephra:nephra_brick_stairs",
+    "nephra:nephra_brick_slab",
+    "nephra:nephra_brick_wall",
+    "nephra:nephra_tiles",
+    "nephra:nephra_tile_stairs",
+    "nephra:nephra_tile_slab",
+    "nephra:nephra_tile_wall",
+    "nephra:chiseled_nephra_bricks"
   ]
 }

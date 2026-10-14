@@ -5,7 +5,8 @@
   "mixins": [
     "MagmaBlockMixin",
     "RuinedPortalPieceMixin",
-    "impl.BlockBehaviourImplMixin"
+    "impl.BlockBehaviourImplMixin",
+    "impl.BlockImplMixin"
   ],
   "injectors": {
     "defaultRequire": 1

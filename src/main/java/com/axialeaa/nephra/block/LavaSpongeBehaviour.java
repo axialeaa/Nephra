@@ -13,7 +13,7 @@ import java.util.function.Function;
 public enum LavaSpongeBehaviour {
 		
 	VISCOUS(2, 20),
-	FAST(SpongeBlock.MAX_DEPTH, SpongeBlock.MAX_COUNT);
+	FAST(4, 50);
 
 	private final int maxDepth;
 	private final int maxCount;

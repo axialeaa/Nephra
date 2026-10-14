@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "nephra:nephra_slab_from_nephra_stonecutting"
+        "recipes": "nephra:nephra_slab_from_nephra_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

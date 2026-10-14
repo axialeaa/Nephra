@@ -1,7 +1,6 @@
 package com.axialeaa.nephra.data.provider;
 
 import com.axialeaa.nephra.data.registry.ModTags;
-import com.axialeaa.nephra.data.registry.References;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.minecraft.core.HolderLookup;
@@ -9,6 +8,8 @@ import net.minecraft.references.BlockItemIds;
 import net.minecraft.tags.BlockTags;
 
 import java.util.concurrent.CompletableFuture;
+
+import static com.axialeaa.nephra.data.registry.ModBlocks.*;
 
 public class ModBlockTagsProvider extends FabricTagsProvider.BlockTagsProvider {
 
@@ -19,22 +20,72 @@ public class ModBlockTagsProvider extends FabricTagsProvider.BlockTagsProvider {
 	@Override
 	protected void addTags(HolderLookup.Provider registries) {
 		this.builder(BlockTags.MINEABLE_WITH_PICKAXE).add(
-			References.NEPHRA,
-			References.NEPHRA_SLAB,
-			References.NEPHRA_STAIRS,
-			References.NEPHRA_WALL
+			NEPHRA.getKey(),
+			NEPHRA_STAIRS.getKey(),
+			NEPHRA_SLAB.getKey(),
+			NEPHRA_WALL.getKey(),
+
+			POLISHED_NEPHRA.getKey(),
+			POLISHED_NEPHRA_STAIRS.getKey(),
+			POLISHED_NEPHRA_SLAB.getKey(),
+			POLISHED_NEPHRA_PILLAR.getKey(),
+
+			NEPHRA_BRICKS.getKey(),
+			NEPHRA_BRICK_STAIRS.getKey(),
+			NEPHRA_BRICK_SLAB.getKey(),
+			NEPHRA_BRICK_WALL.getKey(),
+
+			NEPHRA_TILES.getKey(),
+			NEPHRA_TILE_STAIRS.getKey(),
+			NEPHRA_TILE_SLAB.getKey(),
+			NEPHRA_TILE_WALL.getKey(),
+
+			CHISELED_NEPHRA_BRICKS.getKey()
 		);
 
 		this.builder(BlockTags.INFINIBURN_OVERWORLD).add(
-			References.NEPHRA,
-			References.NEPHRA_SLAB,
-			References.NEPHRA_STAIRS,
-			References.NEPHRA_WALL
+			NEPHRA.getKey(),
+			NEPHRA_STAIRS.getKey(),
+			NEPHRA_SLAB.getKey(),
+			NEPHRA_WALL.getKey(),
+
+			POLISHED_NEPHRA.getKey(),
+			POLISHED_NEPHRA_STAIRS.getKey(),
+			POLISHED_NEPHRA_SLAB.getKey(),
+			POLISHED_NEPHRA_PILLAR.getKey(),
+
+			NEPHRA_BRICKS.getKey(),
+			NEPHRA_BRICK_STAIRS.getKey(),
+			NEPHRA_BRICK_SLAB.getKey(),
+			NEPHRA_BRICK_WALL.getKey(),
+
+			CHISELED_NEPHRA_BRICKS.getKey(),
+
+			NEPHRA_TILES.getKey(),
+			NEPHRA_TILE_STAIRS.getKey(),
+			NEPHRA_TILE_SLAB.getKey(),
+			NEPHRA_TILE_WALL.getKey()
 		);
 
-		this.builder(BlockTags.SLABS).add(References.NEPHRA_SLAB);
-		this.builder(BlockTags.STAIRS).add(References.NEPHRA_STAIRS);
-		this.builder(BlockTags.WALLS).add(References.NEPHRA_WALL);
+		this.builder(BlockTags.STAIRS).add(
+			NEPHRA_STAIRS.getKey(),
+			POLISHED_NEPHRA_STAIRS.getKey(),
+			NEPHRA_BRICK_STAIRS.getKey(),
+			NEPHRA_TILE_STAIRS.getKey()
+		);
+
+		this.builder(BlockTags.SLABS).add(
+			NEPHRA_SLAB.getKey(),
+			POLISHED_NEPHRA_SLAB.getKey(),
+			NEPHRA_BRICK_SLAB.getKey(),
+			NEPHRA_TILE_SLAB.getKey()
+		);
+
+		this.builder(BlockTags.WALLS).add(
+			NEPHRA_WALL.getKey(),
+			NEPHRA_BRICK_WALL.getKey(),
+			NEPHRA_TILE_WALL.getKey()
+		);
 
 		this.builder(ModTags.Blocks.MAGMA_COOLANTS).add(BlockItemIds.BLUE_ICE);
 	}

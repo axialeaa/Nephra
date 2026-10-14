@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_nephra_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nephra:nephra_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "nephra:nephra_brick_stairs_from_nephra_bricks_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_nephra_bricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "nephra:nephra_brick_stairs_from_nephra_bricks_stonecutting"
+    ]
+  }
+}

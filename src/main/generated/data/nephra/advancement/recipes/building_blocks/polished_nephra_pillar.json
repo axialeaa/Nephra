@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_polished_nephra": {
+      "conditions": {
+        "items": [
+          {
+            "items": "nephra:polished_nephra"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "nephra:polished_nephra_pillar"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_polished_nephra"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "nephra:polished_nephra_pillar"
+    ]
+  }
+}

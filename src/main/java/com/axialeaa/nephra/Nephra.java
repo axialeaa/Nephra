@@ -3,8 +3,7 @@ package com.axialeaa.nephra;
 import com.axialeaa.nephra.data.registry.ModBlocks;
 import com.axialeaa.nephra.data.registry.ModGameRules;
 import com.axialeaa.nephra.data.registry.ModSoundEvents;
-import com.axialeaa.nephra.data.registry.References;
-import com.axialeaa.nephra.network.ClientboundCoolingMagmaPayload;
+import com.axialeaa.nephra.network.ClientboundMagmaCoolingPayload;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTabOutput;
@@ -13,20 +12,13 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
-import survivalblock.atmosphere.registrar.BlockRegistrant;
-import survivalblock.atmosphere.registrar.GameRuleRegistrant;
-import survivalblock.atmosphere.registrar.ItemRegistrant;
-import survivalblock.atmosphere.registrar.SoundEventRegistrant;
+
+import static com.axialeaa.nephra.data.registry.ModBlocks.*;
 
 public class Nephra implements ModInitializer {
 
 	public static final String MOD_ID = "nephra";
 	public static final String MOD_NAME = "Nephra";
-
-	public static final BlockRegistrant BLOCK_REGISTRANT = new BlockRegistrant(MOD_ID);
-	public static final ItemRegistrant ITEM_REGISTRANT = new ItemRegistrant(MOD_ID);
-	public static final SoundEventRegistrant SOUND_EVENT_REGISTRANT = new SoundEventRegistrant(MOD_ID);
-	public static final GameRuleRegistrant GAME_RULE_REGISTRANT = new GameRuleRegistrant(MOD_ID);
 
 	@Override
 	public void onInitialize() {
@@ -34,20 +26,20 @@ public class Nephra implements ModInitializer {
 		ModSoundEvents.init();
 		ModGameRules.init();
 
-		ITEM_REGISTRANT.registerFromAnnotations(References.class, false);
-
-		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register(Nephra::tabModification);
-		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(Nephra::tabModification);
+		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.NATURAL_BLOCKS).register(Nephra::addAfterMagma);
+		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(Nephra::addAfterMagma);
 
 		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register(output -> output.insertAfter(
 			Items.NETHERRACK,
-			ModBlocks.NEPHRA,
-			ModBlocks.NEPHRA_STAIRS,
-			ModBlocks.NEPHRA_SLAB,
-			ModBlocks.NEPHRA_WALL
+			NEPHRA, NEPHRA_STAIRS, NEPHRA_SLAB, NEPHRA_WALL,
+			POLISHED_NEPHRA, POLISHED_NEPHRA_STAIRS, POLISHED_NEPHRA_SLAB,
+			POLISHED_NEPHRA_PILLAR,
+			NEPHRA_BRICKS, NEPHRA_BRICK_STAIRS, NEPHRA_BRICK_SLAB, NEPHRA_BRICK_WALL,
+			CHISELED_NEPHRA_BRICKS,
+			NEPHRA_TILES, NEPHRA_TILE_STAIRS, NEPHRA_TILE_SLAB, NEPHRA_TILE_WALL
 		));
 
-		PayloadTypeRegistry.clientboundPlay().register(ClientboundCoolingMagmaPayload.TYPE, ClientboundCoolingMagmaPayload.STREAM_CODEC);
+		PayloadTypeRegistry.clientboundPlay().register(ClientboundMagmaCoolingPayload.TYPE, ClientboundMagmaCoolingPayload.STREAM_CODEC);
 	}
 
 	public static Identifier id(String path) {
@@ -58,8 +50,8 @@ public class Nephra implements ModInitializer {
 		return new CustomPacketPayload.Type<>(id(path));
 	}
 
-	private static void tabModification(FabricCreativeModeTabOutput output) {
-		output.insertBefore(Items.MAGMA_BLOCK, ModBlocks.NEPHRA);
+	private static void addAfterMagma(FabricCreativeModeTabOutput output) {
+		output.insertAfter(Items.MAGMA_BLOCK, NEPHRA);
 	}
 
 }

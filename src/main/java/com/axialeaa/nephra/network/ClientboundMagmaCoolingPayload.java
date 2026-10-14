@@ -20,14 +20,14 @@ import net.minecraft.util.valueproviders.UniformInt;
 
 import java.util.List;
 
-public record ClientboundCoolingMagmaPayload(BlockPos pos) implements CustomPacketPayload {
+public record ClientboundMagmaCoolingPayload(BlockPos pos) implements CustomPacketPayload {
 
 	private static final double SEND_RANGE = 32.0;
 
-    public static final Type<ClientboundCoolingMagmaPayload> TYPE = Nephra.payloadType("clientbound/cooling_magma_v1");
-    public static final StreamCodec<FriendlyByteBuf, ClientboundCoolingMagmaPayload> STREAM_CODEC = StreamCodec.composite(
-		BlockPos.STREAM_CODEC, ClientboundCoolingMagmaPayload::pos,
-		ClientboundCoolingMagmaPayload::new
+    public static final Type<ClientboundMagmaCoolingPayload> TYPE = Nephra.payloadType("clientbound/magma_cooling_v1");
+    public static final StreamCodec<FriendlyByteBuf, ClientboundMagmaCoolingPayload> STREAM_CODEC = StreamCodec.composite(
+		BlockPos.STREAM_CODEC, ClientboundMagmaCoolingPayload::pos,
+		ClientboundMagmaCoolingPayload::new
 	);
 
     @Override
@@ -39,23 +39,24 @@ public record ClientboundCoolingMagmaPayload(BlockPos pos) implements CustomPack
 		List<ServerPlayer> players = level.getPlayers(player -> pos.closerToCenterThan(player.position(), SEND_RANGE));
 
 		for (ServerPlayer player : players)
-			ServerPlayNetworking.send(player, new ClientboundCoolingMagmaPayload(pos));
+			ServerPlayNetworking.send(player, new ClientboundMagmaCoolingPayload(pos));
 	}
 
-	public static class Receiver implements ClientPlayNetworking.PlayPayloadHandler<ClientboundCoolingMagmaPayload> {
+	public static class Receiver implements ClientPlayNetworking.PlayPayloadHandler<ClientboundMagmaCoolingPayload> {
 
 		@Override
-		public void receive(ClientboundCoolingMagmaPayload payload, ClientPlayNetworking.Context context) {
-			BlockPos pos = payload.pos();
+		public void receive(ClientboundMagmaCoolingPayload payload, ClientPlayNetworking.Context context) {
 			ClientLevel level = context.client().level;
 
-			assert level != null;
-			RandomSource random = level.getRandom();
+			if (level != null) {
+				BlockPos pos = payload.pos();
+				RandomSource random = level.getRandom();
 
-			level.playLocalSound(pos, SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F, false);
+				level.playLocalSound(pos, SoundEvents.LAVA_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F, false);
 
-			for (Direction face : Direction.values())
-				addParticles(level, pos, random, ParticleTypes.LARGE_SMOKE, 2, 4, 0.7, face);
+				for (Direction face : Direction.values())
+					addParticles(level, pos, random, ParticleTypes.LARGE_SMOKE, 2, 4, 0.7, face);
+			}
 		}
 
 		private static void addParticles(ClientLevel level, BlockPos pos, RandomSource random, ParticleOptions particleOptions, int minCount, int maxCount, double offset, Direction face) {

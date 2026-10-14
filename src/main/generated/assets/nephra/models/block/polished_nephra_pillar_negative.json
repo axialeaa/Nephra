@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "nephra:block/polished_nephra_pillar_top",
+    "side": "nephra:block/polished_nephra_pillar_side_negative"
+  }
+}

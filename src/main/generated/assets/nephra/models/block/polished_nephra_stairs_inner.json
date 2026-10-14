@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "nephra:block/polished_nephra",
+    "side": "nephra:block/polished_nephra",
+    "top": "nephra:block/polished_nephra"
+  }
+}

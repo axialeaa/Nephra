@@ -1,12 +1,14 @@
 package com.axialeaa.nephra.data.registry;
 
+import com.axialeaa.nephra.Nephra;
 import net.minecraft.sounds.SoundEvent;
-
-import static com.axialeaa.nephra.Nephra.SOUND_EVENT_REGISTRANT;
+import survivalblock.atmosphere.registrar.SoundEventRegistrant;
 
 public final class ModSoundEvents {
 
-	public static final SoundEvent NEPHRA_ABSORB = SOUND_EVENT_REGISTRANT.register("block.nephra.absorb");
+	public static final SoundEventRegistrant REGISTRANT = new SoundEventRegistrant(Nephra.MOD_ID);
+
+	public static final SoundEvent NEPHRA_ABSORB = REGISTRANT.register("block.nephra.absorb");
 
 	private ModSoundEvents() {}
 

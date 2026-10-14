@@ -1,9 +1,7 @@
 package com.axialeaa.nephra.data.registry;
 
 import com.axialeaa.nephra.Nephra;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
@@ -12,13 +10,9 @@ public final class ModTags {
 
 	public static final class Blocks {
 
-		public static final TagKey<Block> MAGMA_COOLANTS = create("magma_coolants");
+		public static final TagKey<Block> MAGMA_COOLANTS = ModBlocks.REGISTRANT.tag("magma_coolants");
 
 		private Blocks() {}
-
-		private static TagKey<Block> create(String path) {
-			return ModTags.create(Registries.BLOCK, path);
-		}
 
 	}
 
@@ -30,15 +24,11 @@ public final class ModTags {
 		private Biomes() {}
 
 		private static TagKey<Biome> create(String path) {
-			return ModTags.create(Registries.BIOME, path);
+			return TagKey.create(Registries.BIOME, Nephra.id(path));
 		}
 
 	}
 
 	private ModTags() {}
-
-	private static <T> TagKey<T> create(ResourceKey<? extends Registry<T>> registryKey, String path) {
-		return TagKey.create(registryKey, Nephra.id(path));
-	}
 
 }

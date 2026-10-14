@@ -1,11 +1,12 @@
 package com.axialeaa.nephra.data.provider;
 
-import com.axialeaa.nephra.data.registry.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider;
 import net.minecraft.core.HolderLookup;
 
 import java.util.concurrent.CompletableFuture;
+
+import static com.axialeaa.nephra.data.registry.ModBlocks.*;
 
 public class ModBlockLootSubProvider extends FabricBlockLootSubProvider {
 
@@ -15,10 +16,27 @@ public class ModBlockLootSubProvider extends FabricBlockLootSubProvider {
 
 	@Override
     public void generate() {
-        this.dropSelf(ModBlocks.NEPHRA);
-		this.dropSelf(ModBlocks.NEPHRA_STAIRS);
-		this.dropSelf(ModBlocks.NEPHRA_WALL);
-		this.add(ModBlocks.NEPHRA_SLAB, this::createSlabItemTable);
+        this.dropSelf(NEPHRA.get());
+		this.dropSelf(NEPHRA_STAIRS.get());
+		this.add(NEPHRA_SLAB.get(), this::createSlabItemTable);
+		this.dropSelf(NEPHRA_WALL.get());
+
+		this.dropSelf(POLISHED_NEPHRA.get());
+		this.dropSelf(POLISHED_NEPHRA_STAIRS.get());
+		this.add(POLISHED_NEPHRA_SLAB.get(), this::createSlabItemTable);
+		this.dropSelf(POLISHED_NEPHRA_PILLAR.get());
+
+		this.dropSelf(NEPHRA_BRICKS.get());
+		this.dropSelf(NEPHRA_BRICK_STAIRS.get());
+		this.add(NEPHRA_BRICK_SLAB.get(), this::createSlabItemTable);
+		this.dropSelf(NEPHRA_BRICK_WALL.get());
+
+		this.dropSelf(CHISELED_NEPHRA_BRICKS.get());
+
+		this.dropSelf(NEPHRA_TILES.get());
+		this.dropSelf(NEPHRA_TILE_STAIRS.get());
+		this.add(NEPHRA_TILE_SLAB.get(), this::createSlabItemTable);
+		this.dropSelf(NEPHRA_TILE_WALL.get());
     }
 
 }

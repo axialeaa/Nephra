@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "axis=x,has_negative=false,has_positive=false": {
+      "model": "nephra:block/polished_nephra_pillar_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,has_negative=false,has_positive=true": {
+      "model": "nephra:block/polished_nephra_pillar_positive_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,has_negative=true,has_positive=false": {
+      "model": "nephra:block/polished_nephra_pillar_negative_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,has_negative=true,has_positive=true": {
+      "model": "nephra:block/polished_nephra_pillar_positive_negative_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,has_negative=false,has_positive=false": {
+      "model": "nephra:block/polished_nephra_pillar"
+    },
+    "axis=y,has_negative=false,has_positive=true": {
+      "model": "nephra:block/polished_nephra_pillar_positive"
+    },
+    "axis=y,has_negative=true,has_positive=false": {
+      "model": "nephra:block/polished_nephra_pillar_negative"
+    },
+    "axis=y,has_negative=true,has_positive=true": {
+      "model": "nephra:block/polished_nephra_pillar_positive_negative"
+    },
+    "axis=z,has_negative=false,has_positive=false": {
+      "model": "nephra:block/polished_nephra_pillar_horizontal",
+      "x": 270
+    },
+    "axis=z,has_negative=false,has_positive=true": {
+      "model": "nephra:block/polished_nephra_pillar_positive_horizontal",
+      "x": 270
+    },
+    "axis=z,has_negative=true,has_positive=false": {
+      "model": "nephra:block/polished_nephra_pillar_negative_horizontal",
+      "x": 270
+    },
+    "axis=z,has_negative=true,has_positive=true": {
+      "model": "nephra:block/polished_nephra_pillar_positive_negative_horizontal",
+      "x": 270
+    }
+  }
+}

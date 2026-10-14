@@ -1,6 +1,5 @@
 package com.axialeaa.nephra.mixin;
 
-import com.axialeaa.nephra.data.registry.ModBlocks;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.BlockPos;
@@ -25,6 +24,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 
+import static com.axialeaa.nephra.data.registry.ModBlocks.*;
+
 @Mixin(RuinedPortalPiece.class)
 public class RuinedPortalPieceMixin {
 
@@ -36,18 +37,19 @@ public class RuinedPortalPieceMixin {
 
 	@Inject(method = "makeSettings(Lnet/minecraft/core/HolderLookup$Provider;Lnet/minecraft/world/level/block/Mirror;Lnet/minecraft/world/level/block/Rotation;Lnet/minecraft/world/level/levelgen/structure/structures/RuinedPortalPiece$VerticalPlacement;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/levelgen/structure/structures/RuinedPortalPiece$Properties;)Lnet/minecraft/world/level/levelgen/structure/templatesystem/StructurePlaceSettings;", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/levelgen/structure/structures/RuinedPortalPiece;getBlockReplaceRule(Lnet/minecraft/world/level/block/Block;FLnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/levelgen/structure/templatesystem/ProcessorRule;", ordinal = 0))
 	private static void replaceSomeNetherrack(HolderLookup.Provider registries, Mirror mirror, Rotation rotation, RuinedPortalPiece.VerticalPlacement verticalPlacement, BlockPos pivot, RuinedPortalPiece.Properties properties, CallbackInfoReturnable<StructurePlaceSettings> cir, @Local(name = "rules") List<ProcessorRule> rules) {
-		rules.add(getBlockReplaceRule(Blocks.NETHERRACK, 0.07F, ModBlocks.NEPHRA));
+		if (properties.cold())
+			rules.add(getBlockReplaceRule(Blocks.NETHERRACK, 0.15F, NEPHRA.get()));
 	}
 
 	@ModifyExpressionValue(method = "getLavaProcessorRule", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/block/Blocks;NETHERRACK:Lnet/minecraft/world/level/block/Block;", opcode = Opcodes.GETSTATIC))
 	private static Block replaceLavaInColdBiomes(Block original) {
-		return ModBlocks.NEPHRA;
+		return NEPHRA.get();
 	}
 
 	@Inject(method = "placeNetherrackOrMagma", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/block/Blocks;NETHERRACK:Lnet/minecraft/world/level/block/Block;", opcode = Opcodes.GETSTATIC), cancellable = true)
-	private void placeSomeNetherrack(RandomSource random, LevelAccessor level, BlockPos pos, CallbackInfo ci) {
-		if (this.properties.cold() && random.nextFloat() < 0.07F) {
-			level.setBlock(pos, ModBlocks.NEPHRA.defaultBlockState(), Block.UPDATE_ALL);
+	private void placeSomeNephra(RandomSource random, LevelAccessor level, BlockPos pos, CallbackInfo ci) {
+		if (this.properties.cold() && random.nextFloat() < 0.15F) {
+			level.setBlock(pos, NEPHRA.get().defaultBlockState(), Block.UPDATE_ALL);
 			ci.cancel();
 		}
 	}

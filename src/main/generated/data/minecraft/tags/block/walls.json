@@ -1,5 +1,7 @@
 {
   "values": [
-    "nephra:nephra_wall"
+    "nephra:nephra_wall",
+    "nephra:nephra_brick_wall",
+    "nephra:nephra_tile_wall"
   ]
 }

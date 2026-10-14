@@ -71,7 +71,7 @@ dependencies {
 
     implementation("net.fabricmc:fabric-loader:${project.loader_version}")
     implementation("net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}+$mcVersion")
-    implementation(include("maven.modrinth:registrar:${project.registrar_version}+$mcVersion"))
+    implementation(include("maven.modrinth:registrar:${project.registrar_version}"))
 
     runtimeOnly("com.terraformersmc:modmenu:${project.modmenu_version}")
 }
