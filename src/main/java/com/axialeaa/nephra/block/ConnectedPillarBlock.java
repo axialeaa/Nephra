@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
@@ -34,13 +35,10 @@ public class ConnectedPillarBlock extends RotatedPillarBlock {
 		BlockPos pos = context.getClickedPos();
 		Direction.Axis axis = stateForPlacement.getValue(AXIS);
 
-		BlockPos positivePos = pos.relative(axis.getPositive());
-		BlockPos negativePos = pos.relative(axis.getNegative());
-
-		if (this.isAlignedWithNeighbour(stateForPlacement, level.getBlockState(positivePos)))
+		if (this.isAlignedWithNeighbour(stateForPlacement, getNeighbourState(level, pos, axis, Direction.AxisDirection.POSITIVE)))
 			stateForPlacement = stateForPlacement.setValue(CONNECTED_POSITIVE, true);
 
-		if (this.isAlignedWithNeighbour(stateForPlacement, level.getBlockState(negativePos)))
+		if (this.isAlignedWithNeighbour(stateForPlacement, getNeighbourState(level, pos, axis, Direction.AxisDirection.NEGATIVE)))
 			stateForPlacement = stateForPlacement.setValue(CONNECTED_NEGATIVE, true);
 
 		return stateForPlacement;
@@ -58,6 +56,10 @@ public class ConnectedPillarBlock extends RotatedPillarBlock {
 			return state.setValue(CONNECTED_NEGATIVE, aligned);
 
 		return state;
+	}
+
+	private static BlockState getNeighbourState(BlockGetter level, BlockPos pos, Direction.Axis axis, Direction.AxisDirection direction) {
+		return level.getBlockState(pos.relative(Direction.fromAxisAndDirection(axis, direction)));
 	}
 
 	private boolean isAlignedWithNeighbour(BlockState state, BlockState neighbourState) {

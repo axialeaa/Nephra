@@ -1,7 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": "nephra:nephra_tiles",
-  "result": {
-    "id": "nephra:nephra_tile_stairs"
-  }
-}

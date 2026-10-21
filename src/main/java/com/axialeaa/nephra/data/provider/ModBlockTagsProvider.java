@@ -28,17 +28,12 @@ public class ModBlockTagsProvider extends FabricTagsProvider.BlockTagsProvider {
 			POLISHED_NEPHRA.getKey(),
 			POLISHED_NEPHRA_STAIRS.getKey(),
 			POLISHED_NEPHRA_SLAB.getKey(),
-			POLISHED_NEPHRA_PILLAR.getKey(),
+			NEPHRA_PILLAR.getKey(),
 
 			NEPHRA_BRICKS.getKey(),
 			NEPHRA_BRICK_STAIRS.getKey(),
 			NEPHRA_BRICK_SLAB.getKey(),
 			NEPHRA_BRICK_WALL.getKey(),
-
-			NEPHRA_TILES.getKey(),
-			NEPHRA_TILE_STAIRS.getKey(),
-			NEPHRA_TILE_SLAB.getKey(),
-			NEPHRA_TILE_WALL.getKey(),
 
 			CHISELED_NEPHRA_BRICKS.getKey()
 		);
@@ -52,39 +47,31 @@ public class ModBlockTagsProvider extends FabricTagsProvider.BlockTagsProvider {
 			POLISHED_NEPHRA.getKey(),
 			POLISHED_NEPHRA_STAIRS.getKey(),
 			POLISHED_NEPHRA_SLAB.getKey(),
-			POLISHED_NEPHRA_PILLAR.getKey(),
+			NEPHRA_PILLAR.getKey(),
 
 			NEPHRA_BRICKS.getKey(),
 			NEPHRA_BRICK_STAIRS.getKey(),
 			NEPHRA_BRICK_SLAB.getKey(),
 			NEPHRA_BRICK_WALL.getKey(),
 
-			CHISELED_NEPHRA_BRICKS.getKey(),
-
-			NEPHRA_TILES.getKey(),
-			NEPHRA_TILE_STAIRS.getKey(),
-			NEPHRA_TILE_SLAB.getKey(),
-			NEPHRA_TILE_WALL.getKey()
+			CHISELED_NEPHRA_BRICKS.getKey()
 		);
 
 		this.builder(BlockTags.STAIRS).add(
 			NEPHRA_STAIRS.getKey(),
 			POLISHED_NEPHRA_STAIRS.getKey(),
-			NEPHRA_BRICK_STAIRS.getKey(),
-			NEPHRA_TILE_STAIRS.getKey()
+			NEPHRA_BRICK_STAIRS.getKey()
 		);
 
 		this.builder(BlockTags.SLABS).add(
 			NEPHRA_SLAB.getKey(),
 			POLISHED_NEPHRA_SLAB.getKey(),
-			NEPHRA_BRICK_SLAB.getKey(),
-			NEPHRA_TILE_SLAB.getKey()
+			NEPHRA_BRICK_SLAB.getKey()
 		);
 
 		this.builder(BlockTags.WALLS).add(
 			NEPHRA_WALL.getKey(),
-			NEPHRA_BRICK_WALL.getKey(),
-			NEPHRA_TILE_WALL.getKey()
+			NEPHRA_BRICK_WALL.getKey()
 		);
 
 		this.builder(ModTags.Blocks.MAGMA_COOLANTS).add(BlockItemIds.BLUE_ICE);

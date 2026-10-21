@@ -38,7 +38,7 @@ public final class ModBlocks {
 	@ConstructItem public static final BlockPresenter<Block> POLISHED_NEPHRA = registerBasic();
 	@ConstructItem public static final BlockPresenter<StairBlock> POLISHED_NEPHRA_STAIRS = registerStairs(POLISHED_NEPHRA);
 	@ConstructItem public static final BlockPresenter<SlabBlock> POLISHED_NEPHRA_SLAB = registerSlab();
-	@ConstructItem public static final BlockPresenter<ConnectedPillarBlock> POLISHED_NEPHRA_PILLAR = registerNephraBlock(ConnectedPillarBlock::new);
+	@ConstructItem public static final BlockPresenter<ConnectedPillarBlock> NEPHRA_PILLAR = registerNephraBlock(ConnectedPillarBlock::new);
 
 	@ConstructItem public static final BlockPresenter<Block> NEPHRA_BRICKS = registerBasic();
 	@ConstructItem public static final BlockPresenter<StairBlock> NEPHRA_BRICK_STAIRS = registerStairs(NEPHRA_BRICKS);
@@ -46,11 +46,6 @@ public final class ModBlocks {
 	@ConstructItem public static final BlockPresenter<WallBlock> NEPHRA_BRICK_WALL = registerWall();
 
 	@ConstructItem public static final BlockPresenter<Block> CHISELED_NEPHRA_BRICKS = registerBasic();
-
-	@ConstructItem public static final BlockPresenter<Block> NEPHRA_TILES = registerBasic();
-	@ConstructItem public static final BlockPresenter<StairBlock> NEPHRA_TILE_STAIRS = registerStairs(NEPHRA_TILES);
-	@ConstructItem public static final BlockPresenter<SlabBlock> NEPHRA_TILE_SLAB = registerSlab();
-	@ConstructItem public static final BlockPresenter<WallBlock> NEPHRA_TILE_WALL = registerWall();
 
 	private ModBlocks() {}
 
@@ -82,7 +77,6 @@ public final class ModBlocks {
 			.slab(NEPHRA_SLAB.get())
 			.stairs(NEPHRA_STAIRS.get())
 			.wall(NEPHRA_WALL.get())
-			.bricks(ModBlocks.NEPHRA_BRICKS.get())
 			.polished(ModBlocks.POLISHED_NEPHRA.get())
 			.generateStonecutterRecipe()
 			.getFamily();
@@ -90,7 +84,8 @@ public final class ModBlocks {
 		public static final BlockFamily POLISHED_NEPHRA = BlockFamilies.familyBuilder(ModBlocks.POLISHED_NEPHRA.get())
 			.slab(POLISHED_NEPHRA_SLAB.get())
 			.stairs(POLISHED_NEPHRA_STAIRS.get())
-			.pillar(POLISHED_NEPHRA_PILLAR.get())
+			.pillar(NEPHRA_PILLAR.get())
+			.bricks(ModBlocks.NEPHRA_BRICKS.get())
 			.generateStonecutterRecipe()
 			.getFamily();
 
@@ -98,15 +93,7 @@ public final class ModBlocks {
 			.slab(NEPHRA_BRICK_SLAB.get())
 			.stairs(NEPHRA_BRICK_STAIRS.get())
 			.wall(NEPHRA_BRICK_WALL.get())
-			.chiseled(ModBlocks.CHISELED_NEPHRA_BRICKS.get())
-			.tiles(ModBlocks.NEPHRA_TILES.get())
-			.generateStonecutterRecipe()
-			.getFamily();
-
-		public static final BlockFamily NEPHRA_TILES = BlockFamilies.familyBuilder(ModBlocks.NEPHRA_TILES.get())
-			.slab(NEPHRA_TILE_SLAB.get())
-			.stairs(NEPHRA_TILE_STAIRS.get())
-			.wall(NEPHRA_TILE_WALL.get())
+			.chiseled(CHISELED_NEPHRA_BRICKS.get())
 			.generateStonecutterRecipe()
 			.getFamily();
 

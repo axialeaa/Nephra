@@ -24,7 +24,7 @@ public class ModBlockLootSubProvider extends FabricBlockLootSubProvider {
 		this.dropSelf(POLISHED_NEPHRA.get());
 		this.dropSelf(POLISHED_NEPHRA_STAIRS.get());
 		this.add(POLISHED_NEPHRA_SLAB.get(), this::createSlabItemTable);
-		this.dropSelf(POLISHED_NEPHRA_PILLAR.get());
+		this.dropSelf(NEPHRA_PILLAR.get());
 
 		this.dropSelf(NEPHRA_BRICKS.get());
 		this.dropSelf(NEPHRA_BRICK_STAIRS.get());
@@ -32,11 +32,6 @@ public class ModBlockLootSubProvider extends FabricBlockLootSubProvider {
 		this.dropSelf(NEPHRA_BRICK_WALL.get());
 
 		this.dropSelf(CHISELED_NEPHRA_BRICKS.get());
-
-		this.dropSelf(NEPHRA_TILES.get());
-		this.dropSelf(NEPHRA_TILE_STAIRS.get());
-		this.add(NEPHRA_TILE_SLAB.get(), this::createSlabItemTable);
-		this.dropSelf(NEPHRA_TILE_WALL.get());
     }
 
 }

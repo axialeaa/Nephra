@@ -34,7 +34,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 			this.generateRecipes(ModBlocks.Families.NEPHRA, FeatureFlags.VANILLA_SET);
 			this.generateRecipes(ModBlocks.Families.POLISHED_NEPHRA, FeatureFlags.VANILLA_SET);
 			this.generateRecipes(ModBlocks.Families.NEPHRA_BRICKS, FeatureFlags.VANILLA_SET);
-			this.generateRecipes(ModBlocks.Families.NEPHRA_TILES, FeatureFlags.VANILLA_SET);
 		}
 
 	}

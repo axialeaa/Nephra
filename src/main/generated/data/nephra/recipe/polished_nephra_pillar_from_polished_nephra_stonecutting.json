@@ -1,7 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": "nephra:polished_nephra",
-  "result": {
-    "id": "nephra:polished_nephra_pillar"
-  }
-}

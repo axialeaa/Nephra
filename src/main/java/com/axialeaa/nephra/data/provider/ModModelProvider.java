@@ -24,17 +24,15 @@ public class ModModelProvider extends FabricModelProvider {
 	@Override
 	public void generateBlockStateModels(BlockModelGenerators generators) {
 		generators.family(NEPHRA.get()).generateFor(Families.NEPHRA);
+		generators.family(NEPHRA_BRICKS.get()).generateFor(Families.NEPHRA_BRICKS);
 
 		BlockModelGenerators.BlockFamilyProvider polishedNephraFamily = generators.family(POLISHED_NEPHRA.get());
-		ConnectedPillarBlock pillar = POLISHED_NEPHRA_PILLAR.get();
+		ConnectedPillarBlock pillar = NEPHRA_PILLAR.get();
 
 		polishedNephraFamily.skipGeneratingModelsFor.add(pillar);
 		polishedNephraFamily.generateFor(Families.POLISHED_NEPHRA);
 
 		generateConnectedPillar(generators, pillar);
-
-		generators.family(NEPHRA_BRICKS.get()).generateFor(Families.NEPHRA_BRICKS);
-		generators.family(NEPHRA_TILES.get()).generateFor(Families.NEPHRA_TILES);
 	}
 
 	private static void generateConnectedPillar(BlockModelGenerators generators, ConnectedPillarBlock pillar) {
@@ -60,10 +58,10 @@ public class ModModelProvider extends FabricModelProvider {
 				.select(Direction.Axis.Y, false, true, verticalModelN)
 				.select(Direction.Axis.Y, true, true, verticalModelPN)
 
-				.select(Direction.Axis.Z, false, false, horizontalModel.with(X_ROT_270))
-				.select(Direction.Axis.Z, true, false, horizontalModelP.with(X_ROT_270))
-				.select(Direction.Axis.Z, false, true, horizontalModelN.with(X_ROT_270))
-				.select(Direction.Axis.Z, true, true, horizontalModelPN.with(X_ROT_270))
+				.select(Direction.Axis.Z, false, false, horizontalModel.with(X_ROT_90))
+				.select(Direction.Axis.Z, true, false, horizontalModelN.with(X_ROT_90)) // inverted because stupid
+				.select(Direction.Axis.Z, false, true, horizontalModelP.with(X_ROT_90)) // inverted because stupid
+				.select(Direction.Axis.Z, true, true, horizontalModelPN.with(X_ROT_90))
 
 				.select(Direction.Axis.X, false, false, horizontalModel.with(X_ROT_90).with(Y_ROT_90))
 				.select(Direction.Axis.X, true, false, horizontalModelP.with(X_ROT_90).with(Y_ROT_90))

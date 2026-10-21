@@ -2,7 +2,6 @@
   "values": [
     "nephra:nephra_slab",
     "nephra:polished_nephra_slab",
-    "nephra:nephra_brick_slab",
-    "nephra:nephra_tile_slab"
+    "nephra:nephra_brick_slab"
   ]
 }

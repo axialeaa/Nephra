@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "nephra:block/nephra_tiles",
-    "side": "nephra:block/nephra_tiles",
-    "top": "nephra:block/nephra_tiles"
-  }
-}
