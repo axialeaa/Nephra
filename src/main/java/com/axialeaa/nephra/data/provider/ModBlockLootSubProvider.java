@@ -6,7 +6,7 @@ import net.minecraft.core.HolderLookup;
 
 import java.util.concurrent.CompletableFuture;
 
-import static com.axialeaa.nephra.data.registry.ModBlocks.*;
+import static com.axialeaa.nephra.registry.ModBlocks.*;
 
 public class ModBlockLootSubProvider extends FabricBlockLootSubProvider {
 

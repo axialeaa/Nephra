@@ -10,16 +10,15 @@
 			"contact": {
 				"homepage": "https://github.com/axialeaa"
 			}
-		}
-	],
-	"contributors": [
+		},
         {
-            "name": "Person",
+            "name": "Yawp Baron",
             "contact": {
-                "homepage": "https://github.com/Person"
+                "homepage": "https://github.com/YawpBaron"
             }
         }
-    ],
+	],
+	"contributors": [],
 	"contact": {
 		"homepage": "https://modrinth.com/mod/${modrinth}",
 		"sources": "https://github.com/axialeaa/${repository}",

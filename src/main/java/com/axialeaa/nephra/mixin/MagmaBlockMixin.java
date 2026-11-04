@@ -1,6 +1,6 @@
 package com.axialeaa.nephra.mixin;
 
-import com.axialeaa.nephra.data.registry.ModGameRules;
+import com.axialeaa.nephra.registry.ModGameRules;
 import com.axialeaa.nephra.mixin.impl.BlockImplMixin;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import net.minecraft.core.BlockPos;
@@ -45,7 +45,7 @@ public class MagmaBlockMixin extends BlockImplMixin {
 	public void randomTickImpl(BlockState state, ServerLevel level, BlockPos pos, RandomSource random, Operation<Void> original) {
 		super.randomTickImpl(state, level, pos, random, original);
 
-		if (canCoolPassively(level, pos) && !level.getBlockTicks().hasScheduledTick(pos, Blocks.MAGMA_BLOCK)) {
+		if (canCoolPassively(level, pos, state) && !level.getBlockTicks().hasScheduledTick(pos, Blocks.MAGMA_BLOCK)) {
 			int coolingTicks = level.getGameRules().get(ModGameRules.PASSIVE_BIOME_COOLING_TICKS);
 
 			if (coolingTicks == 0)
@@ -58,7 +58,7 @@ public class MagmaBlockMixin extends BlockImplMixin {
 	public void tickImpl(BlockState state, ServerLevel level, BlockPos pos, RandomSource random, Operation<Void> original) {
 		super.tickImpl(state, level, pos, random, original);
 
-		if (canCoolPassively(level, pos))
+		if (canCoolPassively(level, pos, state))
 			coolMagma(level, pos, true);
 	}
 
@@ -70,11 +70,8 @@ public class MagmaBlockMixin extends BlockImplMixin {
 		BlockPos relativePos = pos.relative(face);
 		BlockState blockState = level.getBlockState(relativePos);
 
-		if (!state.canOcclude() || !blockState.isFaceSturdy(level, relativePos, face.getOpposite())) {
-			if (isInColdBiome(level, pos))
-				animateInColdBiome(level, pos, face);
-			else animate(level, pos, face, random);
-		}
+		if (!state.canOcclude() || !blockState.isFaceSturdy(level, relativePos, face.getOpposite()))
+			animate(level, pos, face, random);
 	}
 
 }

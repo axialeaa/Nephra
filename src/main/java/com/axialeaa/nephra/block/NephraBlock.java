@@ -1,9 +1,9 @@
 package com.axialeaa.nephra.block;
 
-import com.axialeaa.nephra.data.registry.ModGameRules;
-import com.axialeaa.nephra.data.registry.ModSoundEvents;
-import com.axialeaa.nephra.data.registry.ModTags;
-import com.axialeaa.nephra.data.registry.ModBlocks;
+import com.axialeaa.nephra.registry.ModGameRules;
+import com.axialeaa.nephra.registry.ModSoundEvents;
+import com.axialeaa.nephra.registry.ModTags;
+import com.axialeaa.nephra.registry.ModBlocks;
 import com.axialeaa.nephra.network.ClientboundMagmaCoolingPayload;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,7 +11,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.attribute.EnvironmentAttributes;
@@ -20,6 +20,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.PotentSulfurState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.level.redstone.Orientation;
@@ -54,7 +55,7 @@ public class NephraBlock extends Block {
 
 	public static boolean isTouchingLava(BlockGetter level, BlockPos pos) {
 		for (Direction direction : Direction.values()) {
-			if (level.getFluidState(pos.relative(direction)).is(FluidTags.LAVA))
+			if (level.getFluidState(pos.relative(direction)).is(ModTags.Fluids.NEPHRA_ABSORBABLE))
 				return true;
 		}
 
@@ -63,7 +64,7 @@ public class NephraBlock extends Block {
 
 	private static boolean isTouchingCoolant(BlockGetter level, BlockPos pos) {
 		for (Direction direction : Direction.values()) {
-			if (level.getBlockState(pos.relative(direction)).is(ModTags.Blocks.MAGMA_COOLANTS))
+			if (level.getBlockState(pos.relative(direction)).is(ModTags.BlockItems.MAGMA_COOLANTS.block()))
 				return true;
 		}
 
@@ -87,7 +88,7 @@ public class NephraBlock extends Block {
 		}
 	}
 
-	public static boolean canCoolPassively(ServerLevel level, BlockPos pos) {
+	public static boolean canCoolPassively(ServerLevel level, BlockPos pos, BlockState state) {
 		GameRules gameRules = level.getGameRules();
 
 		if (gameRules.get(ModGameRules.PASSIVE_BIOME_COOLING_TICKS) == ModGameRules.DISABLE_PASSIVE_BIOME_COOLING)
@@ -96,10 +97,22 @@ public class NephraBlock extends Block {
 		if (!gameRules.get(ModGameRules.ALLOW_PASSIVE_COOLING_IF_TOUCHING_LAVA) && isTouchingLava(level, pos))
 			return false;
 
+		BlockState aboveState = level.getBlockState(pos.above());
+
+		if (aboveState.getBlock() instanceof BubbleColumnBlock || isProvidingGeyserPlume(state, aboveState))
+			return false;
+
 		return isInColdBiome(level, pos);
 	}
 
-	public static boolean isInColdBiome(Level level, BlockPos pos) {
+	private static boolean isProvidingGeyserPlume(BlockState state, BlockState aboveState) {
+		if (!state.is(BlockTags.CAUSES_PERIODIC_GEYSER_ERUPTIONS) && !state.is(BlockTags.CAUSES_CONTINUOUS_GEYSER_ERUPTIONS))
+			return false;
+
+		return aboveState.getBlock() instanceof PotentSulfurBlock && aboveState.getValue(PotentSulfurBlock.STATE) != PotentSulfurState.DRY;
+	}
+
+	private static boolean isInColdBiome(Level level, BlockPos pos) {
 		Holder<Biome> biome = level.getBiome(pos);
 
 		if (biome.is(ModTags.Biomes.CANNOT_PASSIVELY_COOL_MAGMA))
@@ -108,15 +121,12 @@ public class NephraBlock extends Block {
 		return biome.is(ModTags.Biomes.MAGMA_PASSIVE_COOLING_OVERRIDE) || biome.value().coldEnoughToSnow(pos, level.getSeaLevel());
 	}
 
-	public static void animateInColdBiome(Level level, BlockPos pos, Direction face) {
-		Vec3 snowflakeMotion = new Vec3(0.05, 0.05, 0.05).multiply(face.getUnitVec3());
-
-		ParticleUtils.spawnParticleOnFace(level, pos, face, ParticleTypes.SNOWFLAKE, snowflakeMotion, 0.5F);
-		ParticleUtils.spawnParticleOnFace(level, pos, face, ParticleTypes.SMOKE, Vec3.ZERO, 0.5F);
-	}
-
 	public static void animate(Level level, BlockPos pos, Direction face, RandomSource random) {
-		if (face != Direction.UP && random.nextFloat() < 0.25F)
+		if (isInColdBiome(level, pos)) {
+			Vec3 motion = new Vec3(0.05, 0.05, 0.05).multiply(face.getUnitVec3());
+			ParticleUtils.spawnParticleOnFace(level, pos, face, ParticleTypes.SMOKE, motion, 0.55F);
+		}
+		else if (face != Direction.UP && random.nextFloat() < 0.25F)
 			ParticleUtils.spawnParticleOnFace(level, pos, face, ParticleTypes.DRIPPING_LAVA, Vec3.ZERO, 0.55F);
 	}
 

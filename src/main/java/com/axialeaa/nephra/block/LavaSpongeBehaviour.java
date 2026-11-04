@@ -1,11 +1,12 @@
 package com.axialeaa.nephra.block;
 
+import com.axialeaa.nephra.registry.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -41,18 +42,20 @@ public enum LavaSpongeBehaviour {
 		if (visitingPos.equals(nephraPos))
 			return true;
 
-		if (!level.getFluidState(visitingPos).is(FluidTags.LAVA))
-			return false;
-
 		BlockState visitingState = level.getBlockState(visitingPos);
+		FluidState visitingFluidState = level.getFluidState(visitingPos);
 		Block visitingBlock = visitingState.getBlock();
 
-		if (visitingBlock instanceof LiquidBlock) {
-			level.setBlockAndUpdate(visitingPos, Blocks.AIR.defaultBlockState());
-			return true;
+		if (visitingFluidState.is(ModTags.Fluids.NEPHRA_ABSORBABLE) && visitingBlock instanceof BucketPickup bucketPickup) {
+			if (visitingBlock instanceof LiquidBlock) {
+				level.setBlockAndUpdate(visitingPos, Blocks.AIR.defaultBlockState());
+				return true;
+			}
+
+			return !bucketPickup.pickupBlock(null, level, visitingPos, visitingState).isEmpty();
 		}
 
-		return visitingBlock instanceof BucketPickup pickup && !pickup.pickupBlock(null, level, visitingPos, visitingState).isEmpty();
+		return false;
 	}
 
 }

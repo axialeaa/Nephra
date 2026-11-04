@@ -12,7 +12,7 @@ import net.minecraft.client.data.models.model.*;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
-import static com.axialeaa.nephra.data.registry.ModBlocks.*;
+import static com.axialeaa.nephra.registry.ModBlocks.*;
 import static net.minecraft.client.data.models.BlockModelGenerators.*;
 
 public class ModModelProvider extends FabricModelProvider {

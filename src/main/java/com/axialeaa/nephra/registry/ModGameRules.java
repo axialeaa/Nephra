@@ -1,4 +1,4 @@
-package com.axialeaa.nephra.data.registry;
+package com.axialeaa.nephra.registry;
 
 import com.axialeaa.nephra.Nephra;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleBuilder;
@@ -10,7 +10,8 @@ import survivalblock.atmosphere.registrar.GameRuleRegistrant;
 public final class ModGameRules {
 
 	private static final GameRuleCategory CATEGORY = new GameRuleCategory(Nephra.id("gamerule_category"));
-	public static final GameRuleRegistrant REGISTRANT = new GameRuleRegistrant(Nephra.MOD_ID).specifyDefaultCategory(CATEGORY);
+	private static final GameRuleRegistrant REGISTRANT = Nephra.createRegistrant(GameRuleRegistrant::new)
+		.specifyDefaultCategory(CATEGORY);
 
 	public static final int DISABLE_PASSIVE_BIOME_COOLING = -1;
 
@@ -21,6 +22,7 @@ public final class ModGameRules {
 		"passive_biome_cooling_ticks",
 		GameRuleBuilder.forInteger(SharedConstants.TICKS_PER_MINUTE * 10)
 			.minValue(DISABLE_PASSIVE_BIOME_COOLING)
+			.category(CATEGORY)
 	);
 
 	private ModGameRules() {}

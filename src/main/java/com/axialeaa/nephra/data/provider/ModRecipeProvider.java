@@ -1,6 +1,6 @@
 package com.axialeaa.nephra.data.provider;
 
-import com.axialeaa.nephra.data.registry.ModBlocks;
+import com.axialeaa.nephra.registry.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.advancements.Advancement;

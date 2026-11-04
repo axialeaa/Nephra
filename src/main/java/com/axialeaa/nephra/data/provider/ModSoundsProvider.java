@@ -1,6 +1,6 @@
 package com.axialeaa.nephra.data.provider;
 
-import com.axialeaa.nephra.data.registry.ModSoundEvents;
+import com.axialeaa.nephra.registry.ModSoundEvents;
 import net.fabricmc.fabric.api.client.datagen.v1.builder.SoundTypeBuilder;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricSoundsProvider;
 import net.minecraft.core.HolderLookup;

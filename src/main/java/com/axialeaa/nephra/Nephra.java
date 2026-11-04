@@ -1,8 +1,8 @@
 package com.axialeaa.nephra;
 
-import com.axialeaa.nephra.data.registry.ModBlocks;
-import com.axialeaa.nephra.data.registry.ModGameRules;
-import com.axialeaa.nephra.data.registry.ModSoundEvents;
+import com.axialeaa.nephra.registry.ModBlocks;
+import com.axialeaa.nephra.registry.ModGameRules;
+import com.axialeaa.nephra.registry.ModSoundEvents;
 import com.axialeaa.nephra.network.ClientboundMagmaCoolingPayload;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
@@ -12,13 +12,15 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
+import survivalblock.atmosphere.registrar.Registrant;
 
-import static com.axialeaa.nephra.data.registry.ModBlocks.*;
+import java.util.function.Function;
+
+import static com.axialeaa.nephra.registry.ModBlocks.*;
 
 public class Nephra implements ModInitializer {
 
-	public static final String MOD_ID = "nephra";
-	public static final String MOD_NAME = "Nephra";
+	private static final String MOD_ID = "nephra";
 
 	@Override
 	public void onInitialize() {
@@ -31,10 +33,10 @@ public class Nephra implements ModInitializer {
 
 		CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.BUILDING_BLOCKS).register(output -> output.insertAfter(
 			Items.NETHERRACK,
-			NEPHRA, NEPHRA_STAIRS, NEPHRA_SLAB, NEPHRA_WALL,
-			POLISHED_NEPHRA, POLISHED_NEPHRA_STAIRS, POLISHED_NEPHRA_SLAB,
+			NEPHRA, NEPHRA_STAIRS, NEPHRA_SLAB, NEPHRA_WALL, // raw
+			POLISHED_NEPHRA, POLISHED_NEPHRA_STAIRS, POLISHED_NEPHRA_SLAB, // polished
 			NEPHRA_PILLAR,
-			NEPHRA_BRICKS, NEPHRA_BRICK_STAIRS, NEPHRA_BRICK_SLAB, NEPHRA_BRICK_WALL,
+			NEPHRA_BRICKS, NEPHRA_BRICK_STAIRS, NEPHRA_BRICK_SLAB, NEPHRA_BRICK_WALL, // bricks
 			CHISELED_NEPHRA_BRICKS
 		));
 
@@ -47,6 +49,10 @@ public class Nephra implements ModInitializer {
 
 	public static <T extends CustomPacketPayload> CustomPacketPayload.Type<T> payloadType(String path) {
 		return new CustomPacketPayload.Type<>(id(path));
+	}
+
+	public static <T extends Registrant<?>> T createRegistrant(Function<String, T> registrant) {
+		return registrant.apply(MOD_ID);
 	}
 
 	private static void addAfterMagma(FabricCreativeModeTabOutput output) {

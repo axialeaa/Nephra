@@ -1,4 +1,4 @@
-package com.axialeaa.nephra.data.registry;
+package com.axialeaa.nephra.registry;
 
 import com.axialeaa.nephra.Nephra;
 import com.axialeaa.nephra.block.ConnectedPillarBlock;
@@ -19,7 +19,7 @@ import java.util.function.Function;
 @ConstructBlock
 public final class ModBlocks {
 
-	public static final BlockRegistrant REGISTRANT = new BlockRegistrant(Nephra.MOD_ID);
+	private static final BlockRegistrant REGISTRANT = Nephra.createRegistrant(BlockRegistrant::new);
 
 	@ConstructItem
 	public static final BlockPresenter<NephraBlock> NEPHRA = REGISTRANT.registerAndPresent(
