@@ -2,7 +2,7 @@
   "parent": "minecraft:block/slab",
   "textures": {
     "bottom": "nephra:block/polished_nephra",
-    "side": "nephra:block/polished_nephra",
+    "side": "nephra:block/polished_nephra_slab_side",
     "top": "nephra:block/polished_nephra"
   }
 }

@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(Block.class)
-public class BlockImplMixin extends BlockBehaviourImplMixin {
+public abstract class BlockImplMixin extends BlockBehaviourImplMixin {
 
 	@WrapMethod(method = "animateTick")
 	public void animateTickImpl(BlockState state, Level level, BlockPos pos, RandomSource random, Operation<Void> original) {

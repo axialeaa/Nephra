@@ -13,8 +13,8 @@ import java.util.function.Function;
 
 public enum LavaSpongeBehaviour {
 		
-	VISCOUS(2, 20),
-	FAST(4, 50);
+	VISCOUS(3, 10),
+	FAST(4, 24);
 
 	private final int maxDepth;
 	private final int maxCount;

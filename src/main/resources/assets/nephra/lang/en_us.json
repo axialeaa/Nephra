@@ -12,13 +12,14 @@
   "block.nephra.polished_nephra": "Polished Nephra",
   "block.nephra.polished_nephra_slab": "Polished Nephra Slab",
   "block.nephra.polished_nephra_stairs": "Polished Nephra Stairs",
-  "gamerule.category.nephra.gamerule_category": "Nephra",
-  "gamerule.nephra.allow_passive_cooling_if_touching_lava": "Magma Blocks cool in cold biomes even when touching lava",
+  "gamerule.category.nephra.gamerules": "Nephra Gamerules",
   "gamerule.nephra.instant_block_cooling": "Blue Ice cools Magma Blocks instantly",
-  "gamerule.nephra.instant_block_cooling.description": "Points to block tag #nephra:magma_coolants.",
-  "gamerule.nephra.lava_sponging": "Nephra works as a lava sponge",
+  "gamerule.nephra.instant_block_cooling.description": "Points to block tag #nephra:instant_magma_coolants. \"IN_COLD_BIOME\" requires that the block is also in a cold biome.",
+  "gamerule.nephra.passive_biome_cooling_requires_coolant": "Ice is required for passive cooling in cold biomes",
+  "gamerule.nephra.passive_biome_cooling_requires_coolant.description": "Points to block tag #nephra:passive_magma_coolants.",
   "gamerule.nephra.passive_biome_cooling_ticks": "Magma Block cooling time in cold biomes",
-  "gamerule.nephra.passive_biome_cooling_ticks.description": "Time (in ticks) from the first random-tick after placement when the Magma Block should cool into Nephra. Set to -1 to disable this feature.",
+  "gamerule.nephra.passive_biome_cooling_ticks.description": "Time (in ticks) from the first random-tick after placement, when the Magma Block cools into Nephra.",
   "subtitles.nephra.block.nephra.absorb": "Nephra sucks",
-  "tag.item.nephra.magma_coolants": "Magma Coolants"
+  "tag.item.nephra.instant_magma_coolants": "Instant Magma Coolants",
+  "tag.item.nephra.passive_magma_coolants": "Passive Magma Coolants"
 }

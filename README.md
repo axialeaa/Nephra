@@ -7,7 +7,7 @@ image link
   </a>
 
   <!-- GitHub -->
-  <a href=https://github.com/axialeaa/ExampleMod>
+  <a href=https://github.com/axialeaa/Nephra>
     <img alt="github" height="64" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg">
   </a>
 
@@ -27,6 +27,20 @@ image link
   </a>
 </p>
 
+<h3 align=center>Magma Blocks bear a unique property...</h3>
+
 <p align=center>
-    <b>Nephra</b> is a ...
+    They are actually entirely hollow, featuring a deeply vast and fractalline network of interconnected chambers. Caving studies suggest the formation (and later, expansion) of these chambers occurs sometime after the rock's initial formation, rendering the pressure of the inner plexus incredibly low; much lower than the intensity of the nether's atmosphere.
 </p>
+
+<p align=center>
+    When a fluid of high pressure meets an area of low pressure, it rushes to fill the space. "<i>Magma Block</i>" is the friendly name given to the lava-infused, suction-retained counterpart of a rock called <b>Nephra</b>.
+</p>
+
+<div style="position: relative; width: 100%; padding-bottom: 56.25%">
+<iframe src="https://www.youtube.com/embed/pYQtyCenUzE" 
+        title="this rock sucks..." frameborder="0" allowfullscreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        style="position: absolute; width: 100%; height: 100%;">
+</iframe>
+</div>

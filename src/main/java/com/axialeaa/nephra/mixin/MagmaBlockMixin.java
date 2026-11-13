@@ -9,7 +9,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.MagmaBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.redstone.Orientation;
@@ -22,44 +21,45 @@ public class MagmaBlockMixin extends BlockImplMixin {
 
 	@Override
 	public void onPlaceImpl(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston, Operation<Void> original) {
-		if (level instanceof ServerLevel serverLevel)
-			coolMagma(serverLevel, pos, false);
+		if (level instanceof ServerLevel serverLevel && canCoolInstantly(serverLevel, pos))
+			coolMagmaToNephra(serverLevel, pos);
 
 		super.onPlaceImpl(state, level, pos, oldState, movedByPiston, original);
 	}
 
 	@Override
 	public void neighborChangedImpl(BlockState state, Level level, BlockPos pos, Block block, Orientation orientation, boolean movedByPiston, Operation<Void> original) {
-		if (level instanceof ServerLevel serverLevel)
-			coolMagma(serverLevel, pos, false);
+		if (level instanceof ServerLevel serverLevel && canCoolInstantly(serverLevel, pos))
+			coolMagmaToNephra(serverLevel, pos);
 
 		super.neighborChangedImpl(state, level, pos, block, orientation, movedByPiston, original);
 	}
 
 	@Override
-	public boolean isRandomlyTickingImpl(BlockState state, Operation<Boolean> original) {
+	protected boolean isRandomlyTicking(BlockState state) {
 		return true;
 	}
 
 	@Override
-	public void randomTickImpl(BlockState state, ServerLevel level, BlockPos pos, RandomSource random, Operation<Void> original) {
-		super.randomTickImpl(state, level, pos, random, original);
+	protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+		if (canCoolPassively(level, pos))
+			return;
 
-		if (canCoolPassively(level, pos, state) && !level.getBlockTicks().hasScheduledTick(pos, Blocks.MAGMA_BLOCK)) {
+		Block thisBlock = (Block) (Object) this;
+
+		if (!level.getBlockTicks().hasScheduledTick(pos, thisBlock)) {
 			int coolingTicks = level.getGameRules().get(ModGameRules.PASSIVE_BIOME_COOLING_TICKS);
 
 			if (coolingTicks == 0)
 				state.tick(level, pos, random);
-			else level.scheduleTick(pos, Blocks.MAGMA_BLOCK, coolingTicks);
+			else level.scheduleTick(pos, thisBlock, coolingTicks);
 		}
 	}
 
 	@Override
-	public void tickImpl(BlockState state, ServerLevel level, BlockPos pos, RandomSource random, Operation<Void> original) {
-		super.tickImpl(state, level, pos, random, original);
-
-		if (canCoolPassively(level, pos, state))
-			coolMagma(level, pos, true);
+	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+		if (canCoolPassively(level, pos))
+			coolMagmaToNephra(level, pos);
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class MagmaBlockMixin extends BlockImplMixin {
 		BlockState blockState = level.getBlockState(relativePos);
 
 		if (!state.canOcclude() || !blockState.isFaceSturdy(level, relativePos, face.getOpposite()))
-			animate(level, pos, face, random);
+			animate(level, pos, face);
 	}
 
 }

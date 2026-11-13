@@ -3,6 +3,7 @@ package com.axialeaa.nephra.data.provider.tag;
 import com.axialeaa.nephra.registry.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.references.BlockItemIds;
 import net.minecraft.resources.ResourceKey;
@@ -87,9 +88,11 @@ public class ModBlockTagsProvider extends FabricTagsProvider.BlockTagsProvider {
 			CHISELED_NEPHRA_BRICKS
 		));
 
-		this.builder(ModTags.BlockItems.MAGMA_COOLANTS.block()).add(
-			BlockItemIds.BLUE_ICE
-		);
+		this.builder(ModTags.BlockItems.INSTANT_MAGMA_COOLANTS.block())
+			.add(BlockItemIds.BLUE_ICE);
+
+		this.builder(ModTags.BlockItems.PASSIVE_MAGMA_COOLANTS.block())
+			.forceAddTag(ConventionalBlockTags.ICE);
 	}
 	
 	@SafeVarargs

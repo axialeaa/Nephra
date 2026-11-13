@@ -2,6 +2,7 @@ package com.axialeaa.nephra.registry;
 
 import com.axialeaa.nephra.Nephra;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockItemTagId;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
@@ -11,12 +12,14 @@ public final class ModTags {
 
 	public static final class BlockItems {
 
-		public static final BlockItemTagId MAGMA_COOLANTS = create("magma_coolants");
+		public static final BlockItemTagId PASSIVE_MAGMA_COOLANTS = create("passive_magma_coolants");
+		public static final BlockItemTagId INSTANT_MAGMA_COOLANTS = create("instant_magma_coolants");
 
 		private BlockItems() {}
 
 		private static BlockItemTagId create(String path) {
-			return BlockItemTagId.create(Nephra.id(path), Nephra.id(path));
+			Identifier id = Nephra.id(path);
+			return BlockItemTagId.create(id, id);
 		}
 
 	}

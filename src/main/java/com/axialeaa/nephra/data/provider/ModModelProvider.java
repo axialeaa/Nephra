@@ -10,6 +10,8 @@ import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import static com.axialeaa.nephra.registry.ModBlocks.*;
@@ -27,12 +29,32 @@ public class ModModelProvider extends FabricModelProvider {
 		generators.family(NEPHRA_BRICKS.get()).generateFor(Families.NEPHRA_BRICKS);
 
 		BlockModelGenerators.BlockFamilyProvider polishedNephraFamily = generators.family(POLISHED_NEPHRA.get());
+
 		ConnectedPillarBlock pillar = NEPHRA_PILLAR.get();
+		SlabBlock slab = POLISHED_NEPHRA_SLAB.get();
 
 		polishedNephraFamily.skipGeneratingModelsFor.add(pillar);
+		polishedNephraFamily.skipGeneratingModelsFor.add(slab);
+
 		polishedNephraFamily.generateFor(Families.POLISHED_NEPHRA);
 
 		generateConnectedPillar(generators, pillar);
+		createPolishedSlab(generators, slab);
+	}
+
+	private static void createPolishedSlab(BlockModelGenerators generators, SlabBlock slab) {
+		Block baseBlock = POLISHED_NEPHRA.get();
+
+		TextureMapping slabTextures = TextureMapping.column(
+			TextureMapping.getBlockTexture(slab, "_side"),
+			TextureMapping.getBlockTexture(baseBlock)
+		);
+
+		MultiVariant bottom = plainVariant(ModelTemplates.SLAB_BOTTOM.create(slab, slabTextures, generators.modelOutput));
+		MultiVariant top = plainVariant(ModelTemplates.SLAB_TOP.create(slab, slabTextures, generators.modelOutput));
+		MultiVariant doubleSlab = plainVariant(ModelTemplates.CUBE_COLUMN.createWithOverride(slab, "_double", slabTextures, generators.modelOutput));
+
+		generators.blockStateOutput.accept(createSlab(slab, bottom, top, doubleSlab));
 	}
 
 	private static void generateConnectedPillar(BlockModelGenerators generators, ConnectedPillarBlock pillar) {

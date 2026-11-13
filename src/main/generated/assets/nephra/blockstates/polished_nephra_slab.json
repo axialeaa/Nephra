@@ -4,7 +4,7 @@
       "model": "nephra:block/polished_nephra_slab"
     },
     "type=double": {
-      "model": "nephra:block/polished_nephra"
+      "model": "nephra:block/polished_nephra_slab_double"
     },
     "type=top": {
       "model": "nephra:block/polished_nephra_slab_top"

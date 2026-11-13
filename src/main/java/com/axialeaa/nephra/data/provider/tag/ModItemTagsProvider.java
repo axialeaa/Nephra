@@ -29,7 +29,8 @@ public class ModItemTagsProvider extends FabricTagsProvider.ItemTagsProvider {
 		this.copy(BlockItemTags.STAIRS);
 		this.copy(BlockItemTags.SLABS);
 		this.copy(BlockItemTags.WALLS);
-		this.copy(ModTags.BlockItems.MAGMA_COOLANTS);
+		this.copy(ModTags.BlockItems.PASSIVE_MAGMA_COOLANTS);
+		this.copy(ModTags.BlockItems.INSTANT_MAGMA_COOLANTS);
 		this.builder(ItemTags.SULFUR_CUBE_ARCHETYPE_SLOW_BOUNCY).addAll(toIds(
 			NEPHRA,
 			POLISHED_NEPHRA,
