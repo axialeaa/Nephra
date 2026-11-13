@@ -37,4 +37,6 @@ image link
     When a fluid of high pressure meets an area of low pressure, it rushes to fill the space. "<i>Magma Block</i>" is the friendly name given to the lava-infused, suction-retained counterpart of a rock called <b>Nephra</b>.
 </p>
 
-<iframe width="367" height="652" src="https://www.youtube.com/embed/pYQtyCenUzE" title="this rock sucks.......  #minecraft #minecraftmods #moddedminecraft #teaser #minecraftjava" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<div style="left:0;width:100%;height:0;position:relative;padding-bottom:56.25%">
+<iframe src="https://www.youtube.com/embed/pYQtyCenUzE?rel=0" style="top:0;left:0;width:100%;height:100%;position:absolute;border:0" allowfullscreen scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe>
+</div>
