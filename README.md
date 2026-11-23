@@ -1,4 +1,4 @@
-image link
+![Nephra building blocks in a crimson forest, watermark saying "Alexia"](https://raw.githubusercontent.com/axialeaa/Axialeaa-BrandingAssets/refs/heads/main/MODS/Nephra/cover.png)
 
 <p align=center>
   <!-- FAPI -->
