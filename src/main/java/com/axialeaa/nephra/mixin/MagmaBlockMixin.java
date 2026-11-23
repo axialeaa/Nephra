@@ -42,12 +42,9 @@ public class MagmaBlockMixin extends BlockImplMixin {
 
 	@Override
 	protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-		if (canCoolPassively(level, pos))
-			return;
-
 		Block thisBlock = (Block) (Object) this;
 
-		if (!level.getBlockTicks().hasScheduledTick(pos, thisBlock)) {
+		if (canCoolPassively(level, pos) && !level.getBlockTicks().hasScheduledTick(pos, thisBlock)) {
 			int coolingTicks = level.getGameRules().get(ModGameRules.PASSIVE_BIOME_COOLING_TICKS);
 
 			if (coolingTicks == 0)

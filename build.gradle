@@ -39,13 +39,13 @@ publishMods {
     displayName = updateName
 
     modLoaders.add("fabric")
-    version = mod_version
+    version = "$mod_version+$mcVersion"
 
     github {
         accessToken = providers.gradleProperty("secrets.github_token")
         repository = repository_url
         commitish = "master"
-        tagName = mod_version
+        tagName = "$mod_version+$mcVersion"
     }
 
     modrinth {
@@ -57,6 +57,7 @@ publishMods {
             minecraftVersions.add(version)
 
         requires("fabric-api")
+        embeds("registrar")
     }
 
     discord {

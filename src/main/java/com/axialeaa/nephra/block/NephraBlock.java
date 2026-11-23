@@ -48,7 +48,7 @@ public class NephraBlock extends Block {
 
 	public static boolean canCoolInstantly(ServerLevel level, BlockPos pos) {
 		return level.getGameRules().get(ModGameRules.INSTANT_BLOCK_COOLING_MODE).booleanValue(level, pos) &&
-			   isTouchingCoolant(level, pos, false);
+			   isTouchingCoolant(level, pos, true);
 	}
 
 	private static boolean isTouchingLava(BlockGetter level, BlockPos pos) {
@@ -106,7 +106,7 @@ public class NephraBlock extends Block {
 	}
 
 	public static void animate(Level level, BlockPos pos, Direction face) {
-		if (isInColdBiome(level, pos) || isTouchingCoolant(level, pos, false)) {
+		if (isInColdBiome(level, pos)) {
 			Vec3 motion = new Vec3(0.05, 0.05, 0.05).multiply(face.getUnitVec3());
 			ParticleUtils.spawnParticleOnFace(level, pos, face, ParticleTypes.SMOKE, motion, 0.55F);
 		}
